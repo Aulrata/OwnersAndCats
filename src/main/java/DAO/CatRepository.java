@@ -9,28 +9,72 @@ import jakarta.persistence.Persistence;
 
 public class CatRepository
 {
-    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DB");
 
-    public CatRepository()
+    public void Create(Cat cat)
     {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("DB");
-    }
-
-    public void Create(Cat cat) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
-        try {
+        try
+        {
             transaction.begin();
             entityManager.persist(cat);
             transaction.commit();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             ex.printStackTrace();
+        }
+        finally
+        {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    public void Update(Cat cat)
+    {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+
+        try
+        {
+            transaction.begin();
+            entityManager.merge(cat);
+            transaction.commit();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    public Cat FindById(Integer _id)
+    {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        Cat cat = null;
+        try{
+            transaction.begin();
+            cat = entityManager.find(Cat.class, _id);
+            transaction.commit();
+        }
+        catch (Exception e) {
+            if (transaction.isActive()) transaction.rollback();
+            e.printStackTrace();
         }
         finally {
             entityManager.close();
             entityManagerFactory.close();
         }
+        return cat;
     }
 }

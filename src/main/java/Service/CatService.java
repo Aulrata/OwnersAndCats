@@ -3,6 +3,7 @@ package Service;
 import DAO.CatRepository;
 import Entity.Cat;
 import Entity.CatColor;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.time.LocalDate;
 
@@ -15,4 +16,12 @@ public class CatService
         Cat cat = new Cat(ownerId, name, breed, color, birthday);
         _catRepository.Create(cat);
     }
+
+    public void ChangeOwner(Integer catId, Integer ownerId)
+    {
+        Cat cat = _catRepository.FindById(catId);
+        cat.setOwnerId(ownerId);
+        _catRepository.Update(cat);
+    }
+
 }

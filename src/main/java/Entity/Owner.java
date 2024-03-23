@@ -17,6 +17,7 @@ public class Owner
     {
         Name = name;
         Birthday = birthday;
+        Cats = new ArrayList<>();
     }
 
     @Id
@@ -26,6 +27,6 @@ public class Owner
     public LocalDate Birthday;
 
     @OneToMany(mappedBy = "_id")
-    public ArrayList<Cat> Cats = new ArrayList<>();
+    public ArrayList<Cat> Cats;
 
 }
