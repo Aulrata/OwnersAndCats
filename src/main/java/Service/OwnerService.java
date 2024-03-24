@@ -7,7 +7,11 @@ import java.time.LocalDate;
 
 public class OwnerService
 {
-    private final OwnerRepository _ownerRepository = new OwnerRepository();
+    private final OwnerRepository _ownerRepository;
+
+    public OwnerService(OwnerRepository ownerRepository) {
+        _ownerRepository = ownerRepository;
+    }
 
     public void CreateOwner(String name, LocalDate birthday)
     {

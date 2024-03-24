@@ -9,7 +9,13 @@ import jakarta.persistence.Persistence;
 
 public class CatRepository
 {
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DB");
+    private final EntityManagerFactory entityManagerFactory;
+
+    public CatRepository(EntityManagerFactory entityManagerFactory1)
+    {
+
+        this.entityManagerFactory = entityManagerFactory1;
+    }
 
     public void Create(Cat cat)
     {

@@ -8,7 +8,11 @@ import jakarta.persistence.Persistence;
 
 public class OwnerRepository
 {
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DB");
+    private final EntityManagerFactory entityManagerFactory;
+
+    public OwnerRepository(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
     public void Create(Owner owner)
     {

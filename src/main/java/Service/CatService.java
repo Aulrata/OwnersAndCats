@@ -8,7 +8,10 @@ import java.time.LocalDate;
 
 public class CatService
 {
-    private final CatRepository _catRepository = new CatRepository();
+    private final CatRepository _catRepository;
+    public CatService(CatRepository catRepository) {
+        _catRepository = catRepository;
+    }
 
     public void CreateCat(Integer ownerId, String name, String breed, CatColor color, LocalDate birthday)
     {
