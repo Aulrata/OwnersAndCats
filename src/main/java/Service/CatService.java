@@ -3,7 +3,6 @@ package Service;
 import DAO.CatRepository;
 import Entity.Cat;
 import Entity.CatColor;
-import jakarta.persistence.EntityManagerFactory;
 
 import java.time.LocalDate;
 

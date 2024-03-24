@@ -2,7 +2,6 @@ package Service;
 
 import DAO.OwnerRepository;
 import Entity.Owner;
-import jakarta.persistence.EntityManagerFactory;
 
 import java.time.LocalDate;
 
@@ -17,8 +16,4 @@ public class OwnerService
         _ownerRepository.Create(owner);
     }
 
-    public void AddCatToOwner(Integer ownerId, Integer catId)
-    {
-
-    }
 }

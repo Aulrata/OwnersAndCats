@@ -62,7 +62,8 @@ public class CatRepository
         EntityTransaction transaction = entityManager.getTransaction();
 
         Cat cat = null;
-        try{
+        try
+        {
             transaction.begin();
             cat = entityManager.find(Cat.class, _id);
             transaction.commit();
